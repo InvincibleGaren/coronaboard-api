@@ -45,7 +45,6 @@ module.exports = (sequelize) => {
       },
     },
     {
-      sequelize,
       tableName: 'GlobalStat',
       timestamps: false,
       indexes: [
