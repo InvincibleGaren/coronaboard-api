@@ -2,3 +2,6 @@ curl --location --request POST "http://localhost:8080/global-stats" --header "Co
 
 
 curl --location --request POST --header "Content-Type: application/json" --data-raw "{\"cc\": \"KR\", \"date\": \"2020-02-14\",\"confirmed\": 28, \"death\": 0,\"negative\": 6679, \"released\": 7,\"tested\": 7242, \"testing\": 535}" "http://localhost:8080/global-stats"
+
+
+curl "http://localhost:8080/global-stats"

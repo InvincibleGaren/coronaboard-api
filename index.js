@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { sequelize } = require("./database");
 const globalStatController = require("./controller/global-stat.controller");
+const keyValueController = require("./controller/key-value.controller");
+import a from React;
 
 async function launchServer(){
     const app = express();
@@ -10,27 +12,15 @@ async function launchServer(){
 
     app.get('/', (req, res) => {
         res.json({message: "hello CoronaBoard"});
-        // res.send(`
-        // <form method='get' action='/global-stats'>
-        //     <input name='get' type='text' value='1'>
-        //     <input type='submit' value='버튼'>
-        // </form>      
-        // <form method='post' action='/global-stats'>
-        //     <input name='post' type='text' value='2'>
-        //     <input type='submit' value='버튼'>
-        // </form> 
-        // <form method='delete' action='/global-stats'>
-        //     <input name='delete' type='text' value='3'>
-        //     <input type='submit' value='버튼'>
-        // </form>     
-        // `);
-        // console.log(typeof res.status(200));
-        // console.log(res.status(200));
     });
 
     app.get('/global-stats', globalStatController.getAll);
     app.post('/global-stats', globalStatController.insertOrUpdate);
     app.delete('/global-stats',globalStatController.remove);
+
+    app.get('/key-value/:key', keyValueController.get);
+    app.post('/key-value', keyValueController.insertOrUpdate);
+    app.delete('/key-value:key',globalStatController.remove);
 
     try{
         await sequelize.sync();
